@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { useHistory } from "react-router";
 import CardButton from "../core/shopCart/CardButton";
 
 export default function Header() {
+
   return (
     <StyledHeader>
       <StyledLogo>Fruti</StyledLogo>
@@ -20,9 +22,10 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 60px;
-`;
+  `;
 const StyledLogo = styled.h1`
     font-weight:bold;
+    cursor:pointer;
     color:gray;
 `;
 
