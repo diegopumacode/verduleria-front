@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import CardButton from "../core/CardButton";
+import CardButton from "../core/shopCart/CardButton";
 
 export default function Header() {
   return (
