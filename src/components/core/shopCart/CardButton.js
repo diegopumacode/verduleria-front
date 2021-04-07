@@ -7,6 +7,7 @@ export default function CardButton() {
       <img
         src="https://cdn0.iconfinder.com/data/icons/minimal-set-seven/32/minimal-49-512.png"
         width="30"
+        alt="imagecart"
       />
       <CountItemsCart>0</CountItemsCart>
     </StyledCartButton>
