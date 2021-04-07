@@ -19,7 +19,7 @@ const StyledButton = styled.button`
   font-weight: bold;
   transition: 500ms;
   &:hover {
-    background-color: black;
+    background-color: grey;
     color: white;
   }
 `;

@@ -1,17 +1,40 @@
 import styled from "@emotion/styled";
-import React from "react";
-import CardProduct from "./../components/core/products/CardProduct"
-
-const products = [1, 2, 3, 4, 5, 6, 7, 8];
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import FilterProducts from "../components/core/products/FilterProducts";
+import { fetchProducts } from "../features/products/ProductSlice";
+import CardProduct from "./../components/core/products/CardProduct";
 
 export default function Home() {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.filterItems);
+  const status = useSelector((state) => state.products.status);
+
+  if (status === "idle") {
+    dispatch(fetchProducts());
+  }
+
   return (
     <>
-      <StyledProducts>
-        {products.map((product) => (
-          <CardProduct />
-        ))}
-      </StyledProducts>
+      {status === "loading" && <p>Cargando</p>}
+      {status === "succeded" && (
+        <>
+          <FilterProducts />
+          <StyledProducts>
+            {products.map((product) => (
+              <CardProduct
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                image={product.image_url}
+                description={product.description}
+                price={product.price}
+              />
+            ))}
+          </StyledProducts>
+        </>
+      )}
+      {status === "failded" && <p>Error</p>}
     </>
   );
 }

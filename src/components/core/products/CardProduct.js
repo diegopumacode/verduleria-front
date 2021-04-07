@@ -1,23 +1,37 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
+import { addItemtoCart } from "../../../features/shopCart/ShopCartSlice";
 import Button from "../../UI/Button";
 import Card from "../../UI/Card";
 
+export default function CardProduct({ id, name, image, description, price }) {
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-export default function CardProduct() {
+  const addItem = () => {
+    dispatch(addItemtoCart({ id, name, image, price }));
+    history.push("/cart");
+
+  };
+
   return (
     <Card>
-      <ImageProduct src="https://tuchacrita.pe/517-home_default_2x/choclo-x-und.jpg" />
+      <ImageProduct src={image} />
       <ContentProduct>
-        <h4>Choclo Peruano 3*4 </h4>
-        <p className="description">
-          quedando esencialmente igual al original. Fue popularizado en los 60s
-          con la creación de las hojas "Letraset"
-        </p>
+        <h4>{name}</h4>
+        <p className="description">{description}</p>
         <p className="price">
-          Precio : <span>15 soles</span>
+          Precio : <span>{price} soles</span>
         </p>
-        <Button>Anadir al carrito</Button>
+        <Button
+          onClick={() => {
+            addItem();
+          }}
+        >
+          Anadir al carrito
+        </Button>
       </ContentProduct>
     </Card>
   );

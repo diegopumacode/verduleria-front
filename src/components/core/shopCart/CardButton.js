@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function CardButton() {
+  const cartItems = useSelector(state => state.shopCart.cartItems);
+
   return (
     <StyledCartButton>
       <img
@@ -9,7 +12,7 @@ export default function CardButton() {
         width="30"
         alt="imagecart"
       />
-      <CountItemsCart>0</CountItemsCart>
+      <CountItemsCart> {cartItems.length}</CountItemsCart>
     </StyledCartButton>
   );
 }
