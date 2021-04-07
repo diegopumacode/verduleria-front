@@ -10,9 +10,11 @@ export default function Home() {
   const products = useSelector((state) => state.products.filterItems);
   const status = useSelector((state) => state.products.status);
 
-  if (status === "idle") {
+  useEffect(() => {
     dispatch(fetchProducts());
-  }
+    
+  }, [])
+  
 
   return (
     <>
@@ -29,6 +31,7 @@ export default function Home() {
                 image={product.image_url}
                 description={product.description}
                 price={product.price}
+                stock={product.stock}
               />
             ))}
           </StyledProducts>

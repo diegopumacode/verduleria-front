@@ -24,6 +24,7 @@ export default function FilterProducts() {
       </div>
       {categories.map((cat) => (
         <div
+          key={cat}
           className={`option ${categorySelect === cat && "selected"}`}
           onClick={() => {
             filterItem(cat);

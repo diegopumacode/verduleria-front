@@ -6,8 +6,8 @@ import Cart from "./pages/Cart";
 
 function App() {
   return (
-    <Layout>
-      <Router>
+    <Router>
+      <Layout>
         <Switch>
           <Route path="/cart">
             <Cart />
@@ -19,8 +19,8 @@ function App() {
             <Home />
           </Route>
         </Switch>
-      </Router>
-    </Layout>
+      </Layout>
+    </Router>
   );
 }
 

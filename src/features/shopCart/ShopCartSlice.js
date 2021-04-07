@@ -1,9 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BASE_URI } from "../../app/config";
+
+
+export const fetchCreateOrden = createAsyncThunk(
+  "shopCart/fetchCreateOrden",
+  async ({orden}) => {
+    const response = await fetch(`${BASE_URI}orden`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orden),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error("Something went wrong");
+    }
+    return { products: data };
+  }
+);
+
 
 const ShopCartSlice = createSlice({
   name: "shopCart",
   initialState: {
     cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
+    status: "idle"
   },
   reducers: {
     addItemtoCart: (state, action) => {
@@ -47,7 +70,24 @@ const ShopCartSlice = createSlice({
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
   },
-  extraReducers: {},
+  extraReducers: {
+    [fetchCreateOrden.pending]: (state, action) => {
+      state.status = "loading";
+    },
+
+    [fetchCreateOrden.fulfilled]: (state, action) => {
+      state.status = "succeded";
+      localStorage.removeItem("cartItems")
+      state.cartItems = []
+      alert("Compra realizada con exito")
+    },
+
+    [fetchCreateOrden.error]: (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+      alert("Error al procesar informacion")
+    },
+  },
 });
 export const {
   addItemtoCart,

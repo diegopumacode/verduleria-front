@@ -6,7 +6,7 @@ import { addItemtoCart } from "../../../features/shopCart/ShopCartSlice";
 import Button from "../../UI/Button";
 import Card from "../../UI/Card";
 
-export default function CardProduct({ id, name, image, description, price }) {
+export default function CardProduct({ id, name, image, description, price,stock }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ export default function CardProduct({ id, name, image, description, price }) {
     <Card>
       <ImageProduct src={image} />
       <ContentProduct>
-        <h4>{name}</h4>
+        <h4>{name} - ({stock} productos en stock)</h4>
         <p className="description">{description}</p>
         <p className="price">
           Precio : <span>{price} soles</span>

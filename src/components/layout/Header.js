@@ -1,15 +1,16 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import CardButton from "../core/shopCart/CardButton";
 
 export default function Header() {
-
   return (
     <StyledHeader>
       <StyledLogo>Fruti</StyledLogo>
       <StyledActions>
-          <CardButton/>
+        <Link to="/cart">
+          <CardButton />
+        </Link>
       </StyledActions>
     </StyledHeader>
   );
@@ -22,11 +23,11 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 60px;
-  `;
+`;
 const StyledLogo = styled.h1`
-    font-weight:bold;
-    cursor:pointer;
-    color:gray;
+  font-weight: bold;
+  cursor: pointer;
+  color: gray;
 `;
 
 const StyledActions = styled.div`
