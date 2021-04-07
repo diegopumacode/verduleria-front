@@ -1,6 +1,10 @@
+import styled from "@emotion/styled";
 import React from "react";
+import Button from "../../UI/Button";
+import Card from "../../UI/Card";
 
-export default function ProductCard() {
+
+export default function CardProduct() {
   return (
     <Card>
       <ImageProduct src="https://tuchacrita.pe/517-home_default_2x/choclo-x-und.jpg" />
